@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>Upload file</title>
+        <script type="text/javascript">
+            function AlertFilesize() {
+                if (window.ActiveXObject) {
+                    var fso = new ActiveXObject("Scripting.FileSystemObject");
+                    var filepath = document.getElementById('uploadfile').value;
+                    var thefile = fso.getFile(filepath);
+                    var sizeinbytes = thefile.size;
+                } else {
+                    var sizeinbytes = document.getElementById('uploadfile').files[0].size;
+                }
+
+                var fSExt = new Array('Bytes', 'KB', 'MB', 'GB');
+                fSize = sizeinbytes; i = 0; while (fSize > 26214400) { fSize /= 1024; i++; }
+
+                alert('Максимальный размер файла равен 25 мегабайтам, а у вас - '+(Math.round(fSize * 100) / 100) + ' ' + fSExt[i]);
+            }
+        </script>
+    </head>
+    <body>
+        <form enctype="multipart/form-data"
+            action="http://127.0.0.1:3333/upload" method="post">
+            <p>Ваш email:<Br>
+                <input type="email" name="emailaddress" required></p>
+            <p><input type="file" name="uploadfile" id="uploadfile"
+                    accept=".txt"
+                    pattern="^Advocam_speedcam_V1.txt|^speedcam22.txt"
+                    ,onchange="AlertFilesize();" required></p>
+            <p><select name="model_type" required>
+                    <option value="Type1" selected>AdvoCam-FD8 Gold-II
+                        (GPS+ГЛОНАСС)</option>
+                    <option value="Type1">AdvoCam-FD8 Red-II (GPS+ГЛОНАСС)</option>
+                    <option value="Type1">AdvoCam-FD8 Gold GPS</option>
+                    <option value="Type1">AdvoCam-FD8 Profi-GPS RED</option>
+                    <option value="Type1">AdvoCam-FD8 SE</option>
+                    <option value="Type1">AdvoCam-FD8 Profi-GPS RED</option>
+                    <option value="Type1">AdvoCam-FD7 Profi-GPS</option>
+                    <option value="Type2">AdvoCam-FD Black-II (GPS+ГЛОНАСС)</option>
+                </select>
+            </p>
+            <p>Комментарий<Br>
+                <textarea name="comment" cols="40" rows="3"></textarea></p>
+            <input type="hidden" name="token" value="{{.}}" />
+            <input type="submit" value="upload" />
+        </form>
+    </body>
+</html>
