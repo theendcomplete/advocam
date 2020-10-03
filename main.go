@@ -110,7 +110,6 @@ func uploadFileHandler() http.HandlerFunc {
 		if modelType == "Type2" {
 			copy(uploadPath+"\\Type2\\App_E_Dog.exe", workDir+"App_E_Dog.exe")
 			copy(uploadPath+"\\Type2\\cygwin1.dll", workDir+"cygwin1.dll")
-			// copy(uploadPath+"\\Type2\\run.bat", workDir+"run.bat")
 
 			uploadFileName = "speedcam22.txt"
 			responseFileName = "DATA_T.BIN"
@@ -119,7 +118,6 @@ func uploadFileHandler() http.HandlerFunc {
 		if modelType == "Type2" {
 			copy(uploadPath+"\\Type3\\speedcam_tool.exe", workDir+"speedcam_tool.exe")
 			copy(uploadPath+"\\Type3\\msvcr100d.dll", workDir+"cygwin1.dll")
-			// copy(uploadPath+"\\Type3\\run.bat", workDir+"run.bat")
 
 			uploadFileName = "speedcam22.txt"
 			responseFileName = "DATA_T.BIN"
