@@ -20,7 +20,7 @@ const (
 	ConnHost = ""
 	ConnPort = "3333"
 	ConnType = "tcp"
-	Version  = "1.0"
+	Version  = "1.1.0"
 )
 const maxUploadSize = 300 * 1024 * 1024 // 40 mb
 var uploadPath = "C:\\tmp\\"
@@ -106,10 +106,20 @@ func uploadFileHandler() http.HandlerFunc {
 			uploadFileName = "Advocam_speedcam_V1.txt"
 			responseFileName = "e_dog_data.txt"
 		}
+
 		if modelType == "Type2" {
 			copy(uploadPath+"\\Type2\\App_E_Dog.exe", workDir+"App_E_Dog.exe")
 			copy(uploadPath+"\\Type2\\cygwin1.dll", workDir+"cygwin1.dll")
-			copy(uploadPath+"\\Type2\\run.bat", workDir+"run.bat")
+			// copy(uploadPath+"\\Type2\\run.bat", workDir+"run.bat")
+
+			uploadFileName = "speedcam22.txt"
+			responseFileName = "DATA_T.BIN"
+		}
+
+		if modelType == "Type2" {
+			copy(uploadPath+"\\Type3\\speedcam_tool.exe", workDir+"speedcam_tool.exe")
+			copy(uploadPath+"\\Type3\\msvcr100d.dll", workDir+"cygwin1.dll")
+			// copy(uploadPath+"\\Type3\\run.bat", workDir+"run.bat")
 
 			uploadFileName = "speedcam22.txt"
 			responseFileName = "DATA_T.BIN"
