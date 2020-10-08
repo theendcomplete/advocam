@@ -97,7 +97,7 @@ func uploadFileHandler() http.HandlerFunc {
 			os.Mkdir(workDir, 0777)
 		}
 
-		// go sendEmail(req.Form.Get("emailaddress"), req.Form.Get("comment"))
+		go sendEmail(req.Form.Get("emailaddress"), req.Form.Get("comment"))
 		uploadFileName := ""
 		responseFileName := ""
 		if modelType == "Type1" {
