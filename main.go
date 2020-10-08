@@ -115,12 +115,12 @@ func uploadFileHandler() http.HandlerFunc {
 			responseFileName = "DATA_T.BIN"
 		}
 
-		if modelType == "Type2" {
-			copy(uploadPath+"\\Type3\\speedcam_tool.exe", workDir+"speedcam_tool.exe")
-			copy(uploadPath+"\\Type3\\msvcr100d.dll", workDir+"cygwin1.dll")
+		if modelType == "Type3" {
+			copy(uploadPath+"\\Type3\\App_E_Dog.exe", workDir+"App_E_Dog.exe")
+			copy(uploadPath+"\\Type3\\msvcr100d.dll", workDir+"msvcr100d.dll")
 
 			uploadFileName = "speedcam22.txt"
-			responseFileName = "DATA_T.BIN"
+			responseFileName = "speeddata.bin"
 		}
 
 		for _, fheaders := range req.MultipartForm.File {
@@ -133,7 +133,6 @@ func uploadFileHandler() http.HandlerFunc {
 				}
 				// open destination
 				var outfile *os.File
-				// if outfile, err = os.Create(workDir + hdr.Filename); nil != err {
 				if outfile, err = os.Create(workDir + uploadFileName); nil != err {
 					status = http.StatusInternalServerError
 					return
@@ -150,6 +149,10 @@ func uploadFileHandler() http.HandlerFunc {
 				if modelType == "Type2" {
 					copy(workDir+responseFileName, workDir+"DATA.BIN")
 					responseFileName = "DATA.BIN"
+				}
+				if modelType == "Type3" {
+					copy(workDir+responseFileName, workDir+"speeddata.bin")
+					responseFileName = "speeddata.bin"
 				}
 				Filename := workDir + responseFileName
 				Openfile, err := os.Open(Filename)
@@ -187,8 +190,6 @@ func uploadFileHandler() http.HandlerFunc {
 				Openfile.Close()
 				outfile.Close()
 				w.Write(b)
-				// io.Copy(w, Openfile) //'Copy' the file to the client
-
 			}
 		}
 	})

@@ -68,10 +68,10 @@ func sendEmail(clientEmail string, comment string) {
 	}
 	message += "\r\n" + base64.StdEncoding.EncodeToString([]byte(body))
 
-	// err := smtp.SendMail(configuration.SMTPServer+":"+strconv.Itoa(configuration.SMTPPort), auth, configuration.AddressTo, []string{to.Address}, []byte(message))
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
+	err := smtp.SendMail(configuration.SMTPServer+":"+strconv.Itoa(configuration.SMTPPort), auth, configuration.AddressTo, []string{to.Address}, []byte(message))
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	c, err := smtp.Dial(servername)
 	if err != nil {
