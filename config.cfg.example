@@ -1,0 +1,8 @@
+{
+     "AddressFrom":"@.",
+     "AddressTo":"@.",
+     "Password":"",
+     "SMTPServer": "smtp.yandex.ru",
+     "SMTPPort": 25,
+     "Subject" : "Онлайн форма для конвертации базы камер",
+}
